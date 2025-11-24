@@ -7,7 +7,7 @@ struct Aluno {
 };
 
 int main() {
-    struct Aluno a = {"Maria", 20, 8.5};
+    struct Aluno a = {"Maria Laura", 20, 8.5};
 
     printf("Nome: %s\n", a.nome);
     printf("Idade: %d\n", a.idade);
