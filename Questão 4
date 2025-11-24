@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Aluno {
+    char nome[50];
+    int idade;
+    float nota;
+};
+
+void exibir(struct Aluno a) {
+    printf("Nome: %s\n", a.nome);
+    printf("Idade: %d\n", a.idade);
+    printf("Nota: %.2f\n", a.nota);
+}
+
+struct Aluno novo() {
+    struct Aluno a;
+    printf("Nome: ");
+    scanf("%s", a.nome);
+    printf("Idade: ");
+    scanf("%d", &a.idade);
+    printf("Nota: ");
+    scanf("%f", &a.nota);
+    return a;
+}
+
+int main() {
+    struct Aluno alunos[4];
+    int total = 0;
+    int opcao, i, remover;
+
+    do {
+        printf("\n1 - Adicionar aluno\n");
+        printf("2 - Exibir alunos\n");
+        printf("3 - Remover aluno\n");
+        printf("0 - Sair\n");
+        scanf("%d", &opcao);
+
+        if(opcao == 1) {
+            if(total < 4) {
+                alunos[total] = novo();
+                total++;
+            }
+        }
+
+        if(opcao == 2) {
+            for(i = 0; i < total; i++) {
+                printf("\nAluno %d:\n", i);
+                exibir(alunos[i]);
+            }
+        }
+
+        if(opcao == 3) {
+            printf("Indice para remover: ");
+            scanf("%d", &remover);
+            if(remover >= 0 && remover < total) {
+                for(i = remover; i < total - 1; i++) {
+                    alunos[i] = alunos[i + 1];
+                }
+                total--;
+            }
+        }
+
+    } while(opcao != 0);
+
+    return 0;
+}
